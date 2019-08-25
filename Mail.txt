@@ -1,0 +1,43 @@
+function emailsend(){
+
+	// Instantiation and passing `true` enables exceptions
+	$mail = new PHPMailer(true);
+	$emailsend=$_POST["email"];
+		try {
+			//Server settings
+			$mail->SMTPDebug = 0;                                       // Enable verbose debug output
+			$mail->isSMTP();                                            // Set mailer to use SMTP
+			$mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+			$mail->Username   = 'meralegalgroup@gmail.com';                     // SMTP username
+			$mail->Password   = 'Akshay@12345';                               // SMTP password
+			$mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
+			$mail->Port       = 465;                                    // TCP port to connect to
+			
+			
+			
+			//Recipients
+			$mail->setFrom('meralegalgroup@gmail.com', 'Legal Group');
+			$mail->addAddress($emailsend, 'Welcome');     // Add a recipient
+			//$mail->addAddress('$to');               // Name is optional
+			$mail->addReplyTo('akshaymahajan701@gmail.com', 'My Query');
+			
+
+			// Attachments
+			//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+			// Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = 'Login Credentials for Legal group';
+			$mail->Body    = 'Thank You for Choosing us<br><b>Welcome to Legal Group Advisory System</b>
+			<br>Username :<b>' . $_POST["email"] .'</b><br>Password :<b>'.$GLOBALS['password'].'</b><br>You are 
+			registering as <b>'.$GLOBALS['type'].'</b>';
+			//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			$mail->send();
+			//echo 'Email has been sent';
+		} catch (Exception $e) {
+		echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	}
+}
