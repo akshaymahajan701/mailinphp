@@ -9,18 +9,18 @@ function emailsend(){
 			$mail->isSMTP();                                            // Set mailer to use SMTP
 			$mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = 'meralegalgroup@gmail.com';                     // SMTP username
-			$mail->Password   = 'Akshay@12345';                               // SMTP password
+			$mail->Username   = 'Emailid@gmail.com';                     // SMTP username
+			$mail->Password   = 'Your password';                               // SMTP password
 			$mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
 			$mail->Port       = 465;                                    // TCP port to connect to
 			
 			
 			
 			//Recipients
-			$mail->setFrom('meralegalgroup@gmail.com', 'Legal Group');
+			$mail->setFrom('Emailid@gmail.com', 'Legal Group');
 			$mail->addAddress($emailsend, 'Welcome');     // Add a recipient
 			//$mail->addAddress('$to');               // Name is optional
-			$mail->addReplyTo('akshaymahajan701@gmail.com', 'My Query');
+			$mail->addReplyTo('Emailid@gmail.com', 'My Query');
 			
 
 			// Attachments
@@ -29,7 +29,7 @@ function emailsend(){
 
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
-			$mail->Subject = 'Login Credentials for Legal group';
+			$mail->Subject = 'Login Credentials ';
 			$mail->Body    = 'Thank You for Choosing us<br><b>Welcome to Legal Group Advisory System</b>
 			<br>Username :<b>' . $_POST["email"] .'</b><br>Password :<b>'.$GLOBALS['password'].'</b><br>You are 
 			registering as <b>'.$GLOBALS['type'].'</b>';
